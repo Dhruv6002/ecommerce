@@ -15,7 +15,7 @@ const Login = () => {
       password,
       username,
     });
-    navigate("/profile");
+    navigate("/myprofile");
   };
   return (
     <div className="min-h-screen bg-amber-100 flex items-center justify-center">
