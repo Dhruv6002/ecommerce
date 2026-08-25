@@ -51,10 +51,10 @@ function Navbar() {
               <p>Back</p>
               </div>
               <div className="flex flex-col items-center gap-0 ">
-              <NavLink className='py-2 pl-4 w-full h-14 border shadow-md text-center hover:text-amber-800' to='/'>HOME</NavLink>
-              <NavLink className='py-2 pl-4 w-full h-14 border shadow-md text-center hover:text-amber-800' to='/posters'>POSTERS</NavLink>
-              <NavLink className='py-2 pl-4 w-full h-14 border shadow-md text-center hover:text-amber-800' to='/gamedvdcover'>GAME DVD COVER</NavLink>
-              <NavLink className='py-2 pl-4 w-full h-14 border shadow-md text-center hover:text-amber-800' to='/contactus'>CONTACT US</NavLink>
+              <NavLink onClick={()=> setVisible(false)} className='py-2 pl-4 w-full h-14 border shadow-md text-center hover:text-amber-800' to='/'>HOME</NavLink>
+              <NavLink onClick={()=> setVisible(false)} className='py-2 pl-4 w-full h-14 border shadow-md text-center hover:text-amber-800' to='/posters'>POSTERS</NavLink>
+              <NavLink onClick={()=> setVisible(false)} className='py-2 pl-4 w-full h-14 border shadow-md text-center hover:text-amber-800' to='/gamedvdcover'>GAME DVD COVER</NavLink>
+              <NavLink onClick={()=> setVisible(false)} className='py-2 pl-4 w-full h-14 border shadow-md text-center hover:text-amber-800' to='/contactus'>CONTACT US</NavLink>
               </div>
               
             </div>
