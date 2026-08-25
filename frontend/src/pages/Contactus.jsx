@@ -49,12 +49,12 @@ const Contactus = () => {
           </aside>
 
           <form onSubmit={handleSubmit} className="rounded-xl bg-white p-6 shadow-md sm:p-8">
-            <div className="grid gap-6 sm:grid-cols-2">
-              <label className="text-sm font-semibold text-gray-700">
+            <div className="flex flex-col gap-6 sm:flex-row">
+              <label className="flex-1 text-sm font-semibold text-gray-700">
                 Your name
                 <input required name="name" type="text" className="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 font-normal outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200" placeholder="Your Name" />
               </label>
-              <label className="text-sm font-semibold text-gray-700">
+              <label className="flex-1 text-sm font-semibold text-gray-700">
                 Email address
                 <input required name="email" type="email" className="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 font-normal outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200" placeholder="Email" />
               </label>
