@@ -11,6 +11,7 @@ import Footer from './components/Footer.jsx'
 import Myprofile from './pages/Myprofile.jsx'
 import ForgotPassword from './pages/ForgotPassword.jsx'
 import ProductDetails from './pages/ProductDetails.jsx'
+import Cart from './pages/Cart.jsx'
 const App = () => {
   return (
     <>
@@ -22,6 +23,7 @@ const App = () => {
           <Route path='/posters' element={<Posters/>}></Route>
           <Route path='/posters/:id' element={<ProductDetails/>}></Route>
           <Route path='/placeorder' element={<Placeorder/>}></Route>
+          <Route path='/cart' element={<Cart/>}></Route>
           <Route path='/orders' element={<Orders/>}></Route>
           <Route path='/contactus' element={<Contactus/>}></Route>
           <Route path='/gamedvdcover' element={<Gamedvdcover/>}></Route>

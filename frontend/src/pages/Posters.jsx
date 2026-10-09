@@ -7,8 +7,11 @@ import image6 from "../assets/image6.webp";
 import image7 from "../assets/image7.jpg";
 import image8 from "../assets/image8.jpg";
 import image9 from "../assets/image9.webp";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 const Posters = () => {
+  const navigate = useNavigate();
+
   const products = [
     {
       id: 1,
@@ -65,6 +68,7 @@ const Posters = () => {
       image:image9,
     },
   ];
+
   return (
     <div className="min-h-screen bg-amber-100 px-4 py-10 sm:px-6 lg:px-8">
 
@@ -83,12 +87,13 @@ const Posters = () => {
             <h2 className="mt-4 text-lg font-semibold">{product.name}</h2>
             <p className="mt-2 text-lg font-bold text-amber-700">{product.price}</p>
           </Link>
-          <Link
-            to="/cart"
+          <button
+            type="button"
+            onClick={() => navigate("/cart", { state: { product } })}
             className="mt-4 w-full rounded-lg bg-black px-4 py-3 font-semibold text-white transition-colors hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 active:bg-amber-800"
           >
             Add to cart
-          </Link>
+          </button>
         </div>
       ))}
     </div>
