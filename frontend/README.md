@@ -1,5 +1,16 @@
 # React + Vite
 
+## Contact form backend
+
+The contact form sends messages to the Express backend, which emails them using
+SMTP. Copy `backend/.env.example` to `backend/.env` and replace `SMTP_USER` and
+`SMTP_PASS` with valid SMTP credentials (for Gmail, use an app password).
+`CONTACT_TO` is the inbox that receives messages.
+
+Start the backend from the repository root with `npm --prefix backend run dev`,
+then start the frontend with `npm --prefix frontend run dev`. The Vite
+development server forwards `/api` requests to the backend on port 3001.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

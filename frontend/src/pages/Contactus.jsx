@@ -2,12 +2,44 @@ import { useState } from "react";
 import { FiMail, FiMapPin, FiSend } from "react-icons/fi";
 
 const Contactus = () => {
-  const [sent, setSent] = useState(false);
+  const [submission, setSubmission] = useState({
+    status: "idle",
+    message: "",
+  });
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setSent(true);
-    event.target.reset();
+    setSubmission({ status: "sending", message: "" });
+
+    const form = event.currentTarget;
+    const payload = Object.fromEntries(new FormData(form));
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "We couldn't send your message. Please try again.");
+      }
+
+      form.reset();
+      setSubmission({
+        status: "sent",
+        message: "Message sent. We'll be in touch soon.",
+      });
+    } catch (error) {
+      setSubmission({
+        status: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "We couldn't send your message. Please try again.",
+      });
+    }
   };
 
   return (
@@ -61,7 +93,7 @@ const Contactus = () => {
             </div>
             <label className="mt-6 block text-sm font-semibold text-gray-700">
               Subject
-              <select name="subject" className="mt-2 w-full rounded-md border border-gray-300 bg-white px-4 py-3 font-normal outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200">
+              <select required name="subject" className="mt-2 w-full rounded-md border border-gray-300 bg-white px-4 py-3 font-normal outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200">
                 <option>Order question</option>
                 <option>Poster question</option>
                 <option>Something else</option>
@@ -72,11 +104,21 @@ const Contactus = () => {
               <textarea required name="message" rows="5" className="mt-2 w-full resize-y rounded-md border border-gray-300 px-4 py-3 font-normal outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200" placeholder="Tell us how we can help..." />
             </label>
             <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <button type="submit" className="flex items-center justify-center gap-3 rounded-md bg-black px-6 py-3 font-semibold text-white transition-colors hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
-                Send message
+              <button disabled={submission.status === "sending"} type="submit" className="flex items-center justify-center gap-3 rounded-md bg-black px-6 py-3 font-semibold text-white transition-colors hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60">
+                {submission.status === "sending" ? "Sending..." : "Send message"}
                 <FiSend />
               </button>
-              {sent && <p className="text-sm font-medium text-green-700">Message sent. We&apos;ll be in touch soon.</p>}
+              {submission.message && (
+                <p
+                  role="status"
+                  aria-live="polite"
+                  className={`text-sm font-medium ${
+                    submission.status === "error" ? "text-red-700" : "text-green-700"
+                  }`}
+                >
+                  {submission.message}
+                </p>
+              )}
             </div>
           </form>
         </div>
