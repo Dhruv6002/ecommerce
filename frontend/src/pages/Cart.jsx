@@ -97,6 +97,8 @@ const Cart = () => {
                   <img
                     src={item.image}
                     alt={item.name}
+                    loading="lazy"
+                    decoding="async"
                     className="h-36 w-full rounded-md bg-white object-contain sm:w-36"
                   />
 

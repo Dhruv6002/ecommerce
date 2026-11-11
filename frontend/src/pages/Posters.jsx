@@ -1,5 +1,5 @@
 import image1 from "../assets/image1.jpg";
-import image2 from "../assets/image2.png";
+import image2 from "../assets/image2.webp";
 import image3 from "../assets/image3.avif";
 import image4 from "../assets/image4.jpg";
 import image5 from "../assets/image5.jpg";
@@ -82,6 +82,8 @@ const Posters = () => {
             <img
               src={product.image}
               alt={product.name}
+              loading="lazy"
+              decoding="async"
               className="h-64 w-full bg-white object-contain"
             />
             <h2 className="mt-4 text-lg font-semibold">{product.name}</h2>
